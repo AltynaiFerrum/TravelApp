@@ -1,3 +1,66 @@
 <resources>
     <string name="app_name">TravelApp</string>
+    <string name="first_onboarding_desc">Get inspired, be motivated!</string>
+    <string name="first_onboarding_title">Travel with us!</string>
+    <string name="second_onboarding_desc">Explore new things through app</string>
+    <string name="second_onboarding_title">Explore the world</string>
+    <string name="third_onboarding_desc">Enjoy the holiday!</string>
+    <string name="third_onboarding_title">Discover new things</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get started</string>
+    <string name="getting_started">Getting Started</string>
+    <string name="lets_login">Lets login for explore continues</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forgotton your password?</string>
+    <string name="reset_password">ResetPassword</string>
+    <string name="do_not_have">Don’t have an account ?</string>
+    <string name="already_have">Already have an account ?</string>
+    <string name="create_account">Create your</string>
+    <string name="account">Account</string>
+    <string name="your_name">Your name</string>
+    <string name="phone">Phone number</string>
+    <string name="last_name">Last name</string>
+    <string name="edit">Edit profile</string>
+    <string name="change_password">Change password</string>
+    <string name="my_destinations">My Destinations</string>
+    <string name="delete_account">Delete account</string>
+    <string name="moraine_lake">Moraine lake</string>
+    <string name="location">Canada, Belle Vue Sur Le Lac Moraine\n</string>
+    <string name="distance">Distance</string>
+    <string name="duration">Duration</string>
+    <string name="sunny">Sunny</string>
+    <string name="title_details">About description</string>
+    <string name="desc_details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse accumsan nec lectus nec varius. Aliquam ornare mattis lorem, interdum accumsan nulla. Suspendisse potenti. Quisque in rhoncus metus, varius vestibulum quam. Duis et pretium ipsum. Donec ultrices malesuada finibus. Donec iaculis felis lacinia elit commodo accumsan... Read More</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="info_details">Osh Trips - это туристическая компания, специализирующаяся на организации увлекательных и незабываемых путешествий. Мы предлагаем широкий выбор туров по различным направлениям, включая экскурсии по достопримечательностям, приключенческие туры, культурные путешествия и многое другое.Независимо от того, хотите ли вы исследовать культуру и историю новых мест или же испытать адреналиновый заряд приключений, Osh Trips поможет вам воплотить ваши мечты в реальность.
+</string>
+    <string name="wish_list">Wish List</string>
+    <string name="refresh">Refresh</string>
+    <string name="search_screen">SearchScreen</string>
+    <string name="profile">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+
+    <string name="email_hint">gmail@gmail.com</string>
+    <string name="your_email">Your email</string>
+    <string name="name_hint">name</string>
+    <string name="lastname_hint">Jika</string>
+    <string name="your_lastname">Your last name</string>
+    <string name="bio_hint">Manager</string>
+    <string name="your_bio">Your bio</string>
+    <string name="kg">Kg tours</string>
+    <string name="abroad">Abroad tours</string>
+
+    <string name="plant_date_header" translation_description="Text that is shown on each plant on the 'My Garden' screen which says the word Planted to show date of planting below">Planted</string>
+    <plurals name="watering_next">
+        <item quantity="one" translation_description="Text indicating when the the plant should next be watered, singular. Used in conjunction with last watered date. 'May 24, 2018 - water tomorrow.'.">water tomorrow.</item>
+        <item quantity="other" translation_description="Text indicating when the the plant should next be watered, plural. Used in conjunction with last watered date. 'May 24, 2018 - water in 8 days.'.">water in %d days.</item>
+    </plurals>
+
+    <string name="loading_error_text">Something went wrong!</string>
+    <string name="loading_error_content_description">Loading error</string>
+
+    <string name="tour_poster_content_description">Tour poster</string>
+    <string name="welcome">Hi Traveller! Welcome!</string>
+
 </resources>
