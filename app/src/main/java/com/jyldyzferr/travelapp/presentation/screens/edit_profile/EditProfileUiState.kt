@@ -1,5 +1,6 @@
 package com.jyldyzferr.travelapp.presentation.screens.edit_profile
 
+import android.graphics.Bitmap
 
 
 sealed class EditProfileUiState {

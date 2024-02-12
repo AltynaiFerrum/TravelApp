@@ -37,7 +37,6 @@ import com.jyldyzferr.travelapp.presentation.screens.common.LoadingScreen
 import com.jyldyzferr.travelapp.presentation.theme.GILROY
 import kotlinx.coroutines.flow.StateFlow
 
-
 @Composable
 fun WishlistScreen(
     uiStateFlow: StateFlow<WishlistUiState>,
@@ -58,13 +57,6 @@ fun WishlistScreen(
     }
 }
 
-
-
-
-
-
-
-
 @Composable
 fun LoadedSaveScreen(
     uiState: WishlistUiState.Loaded,
@@ -73,8 +65,6 @@ fun LoadedSaveScreen(
     modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
-//    val uiState = uiStateFlow.collectAsStateWithLifecycle().value
-
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -85,7 +75,6 @@ fun LoadedSaveScreen(
             modifier = Modifier
                 .padding(innerPaddings)
                 .fillMaxSize()
-//                .verticalScroll(state = scrollState)
                 .background(MaterialTheme.colorScheme.background)
         ) {
             if (uiState.tours.isEmpty()) {

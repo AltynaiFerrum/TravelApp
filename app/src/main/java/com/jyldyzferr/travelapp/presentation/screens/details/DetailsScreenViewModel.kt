@@ -46,18 +46,6 @@ class DetailsScreenViewModel @Inject constructor(
             _uiState.tryEmit(DetailsUiState.Loading)
 
             val tourDetails = fetchTourByIdUseCase(tourId)
-
-//            if (tourDetails == null) {
-//                _uiState.tryEmit(DetailsUiState.Error("Something went wrong"))
-//            } else {
-//                tourDetails.data?.let {
-//                    _uiState.tryEmit(
-//                        DetailsUiState.Content(it.toTour())
-//                    )
-//                    checkIsTourSaved(tourId)
-//                }
-//            }
-
             tourDetails.data?.let {
                 _uiState.tryEmit(
                     DetailsUiState.Content(it.toTour())

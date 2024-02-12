@@ -23,7 +23,6 @@ fun TabBarr(
 ) {
     Surface(
         modifier = modifier
-//            .statusBarsPadding()
             .fillMaxWidth(),
         elevation = MediumElevation,
     color = MaterialTheme.colorScheme.background

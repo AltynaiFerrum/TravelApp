@@ -15,8 +15,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,6 +29,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.outlined.PhotoCamera
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -46,7 +49,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.jyldyzferr.travelapp.R
 import com.jyldyzferr.travelapp.presentation.components.MyTextField
 import com.jyldyzferr.travelapp.presentation.components.SpacerHeight
@@ -69,10 +74,22 @@ const val EDIT_PROFILE_ROUTE = "edit_profile_route"
 @Composable
 fun EditProfileScreen(
     uiState: EditProfileUiState,
+    uploadProgress: AvatarUploadProgress?,
     onEvent: (EditProfileEvent) -> Unit,
     popBackStack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val progress = uploadProgress?.progress
+    var openAlertDialog by remember { mutableStateOf(false) }
+    openAlertDialog = uploadProgress != null
+
+    if (openAlertDialog && progress != null) {
+        UploadDialog(
+            progress = progress!!,
+            onDismissRequest = { openAlertDialog = false }
+        )
+    }
 
     when (uiState) {
         is EditProfileUiState.Initial -> Unit
@@ -227,6 +244,7 @@ fun UserAvatar(
     var isAvatarPlaceholder by remember { mutableStateOf(false) }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
+
     val galleryLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
         onResult = { uri -> uri?.let { imageUri = it } }
@@ -275,6 +293,30 @@ fun UserAvatar(
     }
 }
 
+@Composable
+fun UploadDialog(
+    progress: Int,
+    onDismissRequest: () -> Unit
+) {
+    Dialog(onDismissRequest = { onDismissRequest() }) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .padding(16.dp),
+            shape = RoundedCornerShape(16.dp),
+        ) {
+            Text(
+                text = "progress = $progress",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentSize(Alignment.Center),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+        }
+    }
+}
 
 @Composable
 fun EditTextField(

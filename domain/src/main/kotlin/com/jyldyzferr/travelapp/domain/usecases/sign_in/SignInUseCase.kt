@@ -5,5 +5,8 @@ import com.jyldyzferr.travelapp.domain.models.UserDomain
 
 
 interface SignInUseCase {
-    suspend operator fun invoke (email: String, password: String) : Result<UserDomain>
+    suspend operator fun invoke (
+        email: String,
+        password: String
+    ) : Result<UserDomain>
 }

@@ -2,11 +2,11 @@ package com.jyldyzferr.travelapp.di
 
 import com.jyldyzferr.travelapp.data.repositories.CurrentUserRepositoryImpl
 import com.jyldyzferr.travelapp.data.repositories.LoginRepositoryImpl
-import com.jyldyzferr.travelapp.data.repositories.OshRepositoryImpl
+import com.jyldyzferr.travelapp.data.repositories.TourRepositoryImpl
 import com.jyldyzferr.travelapp.data.repositories.UserRepositoryImpl
 import com.jyldyzferr.travelapp.domain.repositories.CurrentUserRepository
 import com.jyldyzferr.travelapp.domain.repositories.LoginRepository
-import com.jyldyzferr.travelapp.domain.repositories.OshRepository
+import com.jyldyzferr.travelapp.domain.repositories.TourRepository
 import com.jyldyzferr.travelapp.domain.repositories.UserRepository
 import dagger.Binds
 import dagger.Module
@@ -34,6 +34,6 @@ interface RepositoriesModule {
 
     @Binds
     fun bindOshRepository(
-        implementation: OshRepositoryImpl
-    ): OshRepository
+        implementation: TourRepositoryImpl
+    ): TourRepository
 }

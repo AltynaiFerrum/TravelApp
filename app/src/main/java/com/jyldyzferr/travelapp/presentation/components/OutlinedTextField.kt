@@ -1,13 +1,11 @@
 package com.jyldyzferr.travelapp.presentation.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.IconButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -79,7 +77,6 @@ fun MyTextField(
         singleLine = true,
         visualTransformation = if (isInputVisible) VisualTransformation.None else PasswordVisualTransformation(),
         modifier = modifier,
-//            .background(MaterialTheme.colors.background),
         keyboardOptions = if (isInputVisible) KeyboardOptions(
             imeAction = ImeAction.Done,
             keyboardType = KeyboardType.Password
@@ -101,19 +98,6 @@ fun MyTextField(
             unfocusedIndicatorColor = MySignIn,
             cursorColor = Color.Transparent,
         ),
-//        colors = OutlinedTextFieldDefaults.colors(
-//            disabledContainerColor = androidx.compose.ui.graphics.Color.Transparent,
-//            focusedContainerColor = androidx.compose.ui.graphics.Color.Transparent,
-//            unfocusedContainerColor = androidx.compose.ui.graphics.Color.Transparent,
-//            focusedLabelColor = MaterialTheme.colors.background,
-//            unfocusedLabelColor = MaterialTheme.colors.background,
-//            focusedPlaceholderColor = MaterialTheme.colors.background,
-//            unfocusedPlaceholderColor = MaterialTheme.colors.background,
-//            disabledPlaceholderColor = Color.Gray,
-////            disabledIndicatorColor = gray,
-////            focusedIndicatorColor = androidx.compose.ui.graphics.Color.Blue,
-////            unfocusedIndicatorColor = gray
-//        ),
     )
 }
 

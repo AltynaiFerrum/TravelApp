@@ -108,7 +108,6 @@ fun InfoScreen(
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
                         fontFamily = GILROY,
-//                        letterSpacing = 1.sp,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier
                             .padding(top = 40.dp)

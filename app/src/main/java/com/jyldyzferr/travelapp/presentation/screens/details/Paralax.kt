@@ -104,7 +104,7 @@ fun DetailsAboutTourScreen(
             scrollState = scrollState,
             modifier = modifier,
             navigateToInfoScreen = navigateToInfoScreen,
-            )
+        )
     }
 }
 
@@ -113,7 +113,6 @@ fun DetailsAboutTourScreen(
 fun ContentDetailsScreen(
     contentType: Tour,
     popBackStack: () -> Unit,
-//    id: String,
     addOrDeleteMovie: () -> Unit,
     navigateToInfoScreen: () -> Unit,
     isSaved: Boolean,
@@ -123,7 +122,6 @@ fun ContentDetailsScreen(
     Box {
         Column {
             when (contentType) {
-//                is ContentType.Unknown -> ContentType.Unknown
                 is Tour -> LoadedDetailsScreen(
                     popBackStack = popBackStack,
                     tour = contentType,
@@ -131,7 +129,6 @@ fun ContentDetailsScreen(
                     isSaved = isSaved,
                     scrollState = scrollState,
                     navigateToInfoScreen = navigateToInfoScreen,
-//                    id = id
                 )
             }
         }
@@ -144,17 +141,13 @@ fun LoadedDetailsScreen(
     popBackStack: () -> Unit,
     navigateToInfoScreen: () -> Unit,
     tour: Tour,
-//    id: String,
     addOrDeleteMovie: () -> Unit,
     isSaved: Boolean,
-//    text: String,
     scrollState: LazyListState,
-
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberLazyListState()
     Box {
-//        ContentDetails(tour, scrollState)
         LazyColumn(
             contentPadding = PaddingValues(
                 top = AppBarExpendedHeight
@@ -169,10 +162,6 @@ fun LoadedDetailsScreen(
                 )
                 DetailImages(tour)
                 Spacer(modifier = Modifier.height(30.dp))
-//                Reviews()
-//                Image(
-//                    painter = rememberAsyncImagePainter(model = tour.image),
-//                    contentDescription = null )
             }
         }
         ParallaxToolbar(
@@ -184,7 +173,6 @@ fun LoadedDetailsScreen(
             },
             isSaved = isSaved,
             image = tour.image,
-//            id = id
         )
     }
 }
@@ -256,13 +244,6 @@ fun RatingBar(
                     tint = Color.Yellow
                 )
             }
-//            items(count = 5 - tripEvent.rating) {
-//                Icon(
-//                    imageVector = Icons.Filled.StarHalf,
-//                    contentDescription = null,
-//                    tint = Color.Yellow
-//                )
-//            }
         }
         Text(
             text = text,
@@ -296,7 +277,6 @@ fun BookingButton(
         colors = ButtonDefaults.buttonColors(
             backgroundColor = if (isSystemInDarkTheme()) MySignIn
             else MyBlue5,
-//            contentColor = Color.White
         ), modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
@@ -370,7 +350,6 @@ fun Reviews(
 fun ParallaxToolbar(
     tour: Tour,
     image: String,
-//    id: String,
     popBackStack: () -> Unit,
     addOrDeleteMovie: () -> Unit,
     isSaved: Boolean,
@@ -403,18 +382,10 @@ fun ParallaxToolbar(
                     }) {
                 AsyncImage(
                     model = image,
-//                    painter = rememberAsyncImagePainter(model = tour.image),
-//                        ImageRequest.Builder(LocalContext.current)
-//                            .data(data = tour.image)
-//                            .apply(block = fun ImageRequest.Builder.() {
-//                                placeholder(R.drawable.background_travel_details)
-//                                crossfade(true)
-//                            }).build()
-
                     modifier = Modifier
                         .fillMaxSize()
                         .height(imageHeight)
-                        .clip(RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp))
+//                        .clip(RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp))
                         .graphicsLayer {
                             alpha = 1f - offsetProgress
                         },
@@ -470,7 +441,6 @@ fun ParallaxToolbar(
             addOrDeleteMovie = {
                 addOrDeleteMovie()
             },
-//            id = id,
             isSaved = isSaved
         )
     }
@@ -498,7 +468,6 @@ fun CircularDetailsBackButtons(
 
 @Composable
 fun CircularDetailsFavoriteButton(
-//    id: String,
     addOrDeleteMovie: () -> Unit,
     isSaved: Boolean,
 ) {
@@ -517,7 +486,6 @@ fun CircularDetailsFavoriteButton(
             else Color.White,
             contentDescription = null
         )
-
     }
 }
 

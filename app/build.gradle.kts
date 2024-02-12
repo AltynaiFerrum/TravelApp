@@ -100,7 +100,7 @@ dependencies {
     implementation(libs.foundation)
 
     implementation(libs.parse.android)
-
+    implementation(libs.core.ktx)
 
     val bom = libs.androidx.compose.bom
     implementation(platform(bom))

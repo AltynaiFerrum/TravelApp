@@ -17,20 +17,20 @@ class SignUpUseCaseImpl constructor(
         name: String,
         lastName: String,
     ): Result<UserDomain> {
-
         if (name.isEmpty()) {
             return Result.Error(message = "First fill in name!")
         }
-
-        if (email.isEmpty()) {
-            return Result.Error(message = "First fill in email!")
+        if (lastName.isEmpty()) {
+            return Result.Error(message = "First fill in last name!")
         }
+
+//        if (email.isEmpty()) {
+//            return Result.Error(message = "First fill in email!")
+//        }
         if (password.isEmpty()) {
             return Result.Error(message = "First fill in password!")
         }
-//        if (email.isValidString()) {
-//            return Result.Error(message = "Incorrect fill email")
-//        }
+
         if (password.length < 8) {
             return Result.Error(message = "Incorrect fill password")
         }

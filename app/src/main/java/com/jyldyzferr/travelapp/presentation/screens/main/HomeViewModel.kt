@@ -17,8 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MainToursViewModel @Inject constructor(
     private val fetchOshToursUseCase: FetchAllTripsUseCase,
-//    private val showToastUseCase: ShowToastUseCase,
-//    private val currentUserUseCase: FetchAllUsersUseCase
 ) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<MainUiState>(MainUiState.Loading)

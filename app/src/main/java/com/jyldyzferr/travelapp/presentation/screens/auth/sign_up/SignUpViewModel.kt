@@ -6,19 +6,22 @@ import androidx.lifecycle.viewModelScope
 import com.jyldyzferr.travelapp.domain.common.Result
 import com.jyldyzferr.travelapp.domain.usecases.current_user.SaveCurrentUserUseCase
 import com.jyldyzferr.travelapp.domain.usecases.sign_up.SignUpUseCase
+import com.jyldyzferr.travelapp.presentation.extensions.createMutableSharedFlowAsSingleLiveEvent
 import com.jyldyzferr.travelapp.presentation.managers.NavigatorManager
 import com.jyldyzferr.travelapp.presentation.managers.toast.ShowToastUseCase
 import com.jyldyzferr.travelapp.presentation.navigations.BottomBarNavigationDestinations
 import com.jyldyzferr.travelapp.presentation.navigations.navGraph.MAIN_NAV_GRAPH_ROUTE
+import com.jyldyzferr.travelapp.presentation.screens.auth.sign_in.SignInDestination
 import com.jyldyzferr.travelapp.presentation.screens.auth.sign_in.default_error_message
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
@@ -30,6 +33,9 @@ class SignUpViewModel @Inject constructor(
     ) : ViewModel() {
     private val _uiState = MutableStateFlow(SignUpUiState())
     val uiState: StateFlow<SignUpUiState> = _uiState.asStateFlow()
+
+    private val _navControllerFlow = createMutableSharedFlowAsSingleLiveEvent<String>()
+    val navControllerFlow: SharedFlow<String> = _navControllerFlow.asSharedFlow()
 
     fun onEvent(event: SignUpEvent) {
         when (event) {
@@ -80,13 +86,14 @@ class SignUpViewModel @Inject constructor(
                 is Result.Success -> {
                     val user = result.data ?: return@launch
                     saveCurrentUserUseCase(user)
-                    navigatorManager.navigateTo(BottomBarNavigationDestinations.MAIN.route)
+//                    _navControllerFlow.tryEmit(BottomBarNavigationDestinations.MAIN.route)
+                    navigatorManager.navigateTo(MAIN_NAV_GRAPH_ROUTE, true)
                     Log.e("TravelApp", "data = ${result.data}")
                 }
             }
         }
     }
     private fun doLoginClick() {
-        navigatorManager.navigateTo(MAIN_NAV_GRAPH_ROUTE)
+        _navControllerFlow.tryEmit(SignInDestination.route())
     }
 }

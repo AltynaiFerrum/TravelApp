@@ -27,7 +27,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -35,11 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jyldyzferr.travelapp.presentation.components.MyTextField
-import com.jyldyzferr.travelapp.presentation.theme.ExtraLargeSpacing
 import com.jyldyzferr.travelapp.presentation.theme.GILROY
-import com.jyldyzferr.travelapp.presentation.theme.LargeSpacing
 import com.jyldyzferr.travelapp.presentation.theme.MySignIn
-import com.jyldyzferr.travelapp.presentation.theme.MyTextField1
 import com.jyldyzferr.travelapp.presentation.theme.MyWhite
 import com.jyldyzferr.travelapp.presentation.theme.POPPINS
 
@@ -47,35 +43,8 @@ import com.jyldyzferr.travelapp.presentation.theme.POPPINS
 @Composable
 fun PasswordResetScreen(
     popBackStack: () -> Unit,
-//    viewModel: PasswordResetViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-//    val passwordResetData = viewModel.passwordResetData.collectAsState()
-
-//    LaunchedEffect(key1 = viewModel.passwordResetState) {
-//        viewModel.passwordResetState.collectLatest {
-//            when (it) {
-//                is Result.Success -> {
-//                    if (it.data) {
-//                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-//                        navigator.navigate(SignInScreenDestination)
-//                    } else {
-//                        Log.d("PasswordResetScreen", "ScreenState: No state received so far.")
-//                    }
-//                }
-//                is Response.Error -> {
-//                    Toast.makeText(context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
-//                }
-//                is Response.Message -> {
-//                    Toast.makeText(context, "Message: ${it.message}", Toast.LENGTH_SHORT).show()
-//                }
-//                is Response.Loading -> {
-//                    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
-
     Surface(color = MaterialTheme.colors.background) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -147,26 +116,11 @@ fun PasswordResetScreen(
                 Row(
                     modifier = Modifier
                         .padding(end = 60.dp)
-//                    .padding(top = ExtraLargeSpacing)
                         .align(Alignment.End)
                 ) {
-//                    androidx.compose.material3.Button(
-//                        onClick = {
-//                            popBackStack()
-//                        },
-//                        modifier = Modifier
-//                            .width(90.dp)
-//                            .height(48.dp),
-//                        shape = RoundedCornerShape(15.dp),
-//                        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-//                            containerColor = MyTextField1
-//                        )
-//                    ) {
-
                     Icon(
                         modifier = Modifier
                             .size(38.dp),
-//                            .clickable { popBackStack() } ,
                         imageVector = Icons.Default.KeyboardArrowLeft,
                         contentDescription = null,
                         tint = MySignIn
@@ -189,4 +143,3 @@ fun PasswordResetScreen(
         }
     }
 }
-//}

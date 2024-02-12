@@ -2,11 +2,11 @@ package com.jyldyzferr.travelapp.domain.models
 
 
 data class UserDomain(
-    val avatar: String,
+    val avatar: String?,
     val createdAt: String,
     val email: String,
     val lastName: String,
-    val location: String,
+    val location: String?,
     val name: String,
     val objectId: String,
     val password: String,
@@ -15,10 +15,10 @@ data class UserDomain(
 
     companion object {
         val unknown = UserDomain(
-            avatar = String(),
+            avatar = null,
             createdAt = String(),
             email = "gmail.com",
-            location = String(),
+            location = null,
             name = "Unknown",
             objectId = String(),
             password = String(),

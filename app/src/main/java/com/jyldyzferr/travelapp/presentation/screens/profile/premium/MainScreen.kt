@@ -36,9 +36,10 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.jyldyzferr.travelapp.R
 
+const val PREMIUM_ROUTE = "premium_route"
 
 @Composable
-internal fun PremiumScreen(
+fun PremiumScreen(
     viewMode: ListScreenViewModel
 ) {
     val state = viewMode.state.collectAsState()
@@ -125,7 +126,6 @@ internal fun RenderListingScreen(
 
         Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
             Column {
-//                WeatherView(state.selectedCountry.touristPlaces[state.selectedItemIndex].images[0])
                 ListCountryChips(
                     state.countriesList,
                     state.selectedCountry.name,

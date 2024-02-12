@@ -39,13 +39,14 @@ class SearchViewModel @Inject constructor(
         searQueryFlow.onEach { query ->
             _uiStateFlow.tryEmit(
                 _uiStateFlow.value.copy(
-                    query = query, isLoading = true
+                    query = query,
+                    isLoading = true
                 )
             )
         }
-            .debounce(300).onEach(
-                ::startSearch
-            ).launchIn(viewModelScope)
+            .debounce(300)
+            .onEach(::startSearch)
+            .launchIn(viewModelScope)
     }
 
     private fun startSearch(query: String) {
@@ -59,6 +60,17 @@ class SearchViewModel @Inject constructor(
                     isLoading = false
                 )
             )
+//            val trips = searchByQueryTripsUseCase.searchByQuery(query)
+//            val result = trips.filter { it.title.contains(query, ignoreCase = true) }
+////            _uiStateFlow.tryEmit(_uiStateFlow.value.copy(tours = trips.data!!.map { it.toTour() }, isLoading = false))
+////            val content = fetchAllTripsUseCase.invoke()
+//            val tours = result.map { it.toTour() }
+//            _uiStateFlow.tryEmit(
+//                _uiStateFlow.value.copy(
+//                    tours = tours,
+//                    isLoading = false
+//                )
+//            )
         }
     }
 
@@ -66,7 +78,7 @@ class SearchViewModel @Inject constructor(
         searQueryFlow.tryEmit(value)
     }
 
-    private fun filterMenuListByQuery(
+        private fun filterTourListByQuery(
         tripList: List<ToursNewDomain>,
         query: String
     ): List<ToursNewDomain> {

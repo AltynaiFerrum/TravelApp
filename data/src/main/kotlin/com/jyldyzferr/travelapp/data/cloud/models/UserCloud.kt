@@ -7,13 +7,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserCloud(
     @SerializedName("avatar")
-    val avatar: String,
+    val avatar: String?,
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("email")
     val email: String,
     @SerializedName("location")
-    val location: String,
+    val location: String?,
     @SerializedName("name")
     val name: String,
     @SerializedName("objectId")

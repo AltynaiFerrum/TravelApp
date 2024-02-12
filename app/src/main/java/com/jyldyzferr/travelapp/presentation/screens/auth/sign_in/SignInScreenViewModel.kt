@@ -7,15 +7,16 @@ import com.jyldyzferr.travelapp.domain.common.Result
 import com.jyldyzferr.travelapp.domain.models.UserDomain
 import com.jyldyzferr.travelapp.domain.usecases.current_user.SaveCurrentUserUseCase
 import com.jyldyzferr.travelapp.domain.usecases.sign_in.SignInUseCase
+import com.jyldyzferr.travelapp.presentation.extensions.createMutableSharedFlowAsSingleLiveEvent
 import com.jyldyzferr.travelapp.presentation.managers.NavigatorManager
 import com.jyldyzferr.travelapp.presentation.managers.toast.ShowToastUseCase
-import com.jyldyzferr.travelapp.presentation.navigations.navGraph.AUTH_NAV_GRAPH_ROUTE
 import com.jyldyzferr.travelapp.presentation.navigations.navGraph.MAIN_NAV_GRAPH_ROUTE
-import com.jyldyzferr.travelapp.presentation.screens.auth.password_reset.PasswordResetDestination
 import com.jyldyzferr.travelapp.presentation.screens.auth.sign_up.SignUpDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -33,6 +34,9 @@ class SignInScreenViewModel @Inject constructor(
     ) : ViewModel() {
     private val _uiState = MutableStateFlow(SignInUiState())
     val uiState: StateFlow<SignInUiState> = _uiState.asStateFlow()
+
+    private val _navCommandFlow = createMutableSharedFlowAsSingleLiveEvent<String>()
+    val navCommandFlow: SharedFlow<String> = _navCommandFlow.asSharedFlow()
 
     fun onEvent(event: SignInEvent) {
         when (event) {
@@ -74,7 +78,7 @@ class SignInScreenViewModel @Inject constructor(
                     return
                 }
                 saveCurrentUserUseCase(user)
-                navigatorManager.navigateTo(MAIN_NAV_GRAPH_ROUTE)
+                navigatorManager.navigateTo(MAIN_NAV_GRAPH_ROUTE, true)
             }
         }
         _uiState.update { currentState ->
@@ -86,7 +90,7 @@ class SignInScreenViewModel @Inject constructor(
         _uiState.update { currentState ->
             currentState.copy(isSuccessesAuth = true)
         }
-        navigatorManager.navigateTo(AUTH_NAV_GRAPH_ROUTE)
+        _navCommandFlow.tryEmit(SignUpDestination.route())
     }
 
     private fun doPasswordChanged(
@@ -109,6 +113,6 @@ class SignInScreenViewModel @Inject constructor(
 //        _uiState.update { currentState ->
 //            currentState.copy(isSuccessesAuth = true)
 //        }
-        navigatorManager.navigateTo(PasswordResetDestination.route())
+//        navigatorManager.navigateTo(PasswordResetDestination.route())
     }
 }

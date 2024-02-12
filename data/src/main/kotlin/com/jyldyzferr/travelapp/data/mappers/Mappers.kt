@@ -48,27 +48,3 @@ fun TourDetailsCache.toDomain(): ToursNewDomain = this.run {
 }
 
 
-//fun OshDomain.toCache(): TourDetailsCache = this.run {
-//    TourDetailsCache(
-//        createdAt = createdAt,
-//        id = objectId,
-//        updatedAt = updatedAt,
-//        description = description,
-//        image = image,
-//        title = title
-//    )
-//}
-
-//fun TourDetailsCache.toDomain(): OshDomain = this.run {
-//    OshDomain(
-//        createdAt = createdAt,
-//        objectId = id,
-//        updatedAt = updatedAt,
-//        description = description,
-//        image = image,
-//        title = title
-//    )
-//}
-//
-//
-

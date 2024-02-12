@@ -19,33 +19,23 @@ private const val SPLASH_SCREEN_SHOW_TIME = 3000L
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SplashScreen(
-//    uiState: SplashUiState,
-//    actions: SplashScreenActions,
     modifier: Modifier = Modifier,
-    ) {
-
+) {
     LaunchedEffect(key1 = Unit) {
         delay(SPLASH_SCREEN_SHOW_TIME)
-
     }
-//    val scope = rememberCoroutineScope()
-
     Box(
         modifier = modifier
             .fillMaxSize()
             .background(Color.White),
-                contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center
     ) {
         AnimatedPreloader(
             modifier = Modifier
                 .size(200.dp)
-                .align(Alignment.Center))
+                .align(Alignment.Center)
+        )
     }
-//    scope.launch {
-//        delay(5000)
-//        if(uiState.isOnboardingPassed) actions.navigateToLoginScreen()
-//        else actions.navigateToOnboardingScreen()
-//    }
 }
 
 

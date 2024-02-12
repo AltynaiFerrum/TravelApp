@@ -50,10 +50,8 @@ class LoginRepositoryImpl @Inject constructor(
         Result.Success(
             CreateResponseDomain(
                 id = result.id,
-                createAt = LocalDateTime.parse(result.createAt)
             )
         )
-
     } catch (e: CancellationException) {
         throw e
     } catch (e: Exception) {

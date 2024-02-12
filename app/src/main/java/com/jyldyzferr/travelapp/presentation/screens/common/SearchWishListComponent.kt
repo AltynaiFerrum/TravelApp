@@ -1,5 +1,6 @@
 package com.jyldyzferr.travelapp.presentation.screens.common
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +26,8 @@ fun SearchWishListComponent(
     posterUrl: String,
     title: String,
     id: String,
-//    location: String,
+    location: String,
+    description: String,
     navigateToDetails: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -34,7 +36,7 @@ fun SearchWishListComponent(
     ) {
         Row(
             modifier = Modifier
-                .padding(start = 20.dp, bottom = 15.dp)
+                .padding(start = 20.dp, bottom = 15.dp, top = 20.dp)
         ) {
             Box(
                 modifier = modifier
@@ -53,18 +55,25 @@ fun SearchWishListComponent(
             }
             Column(
                 modifier = Modifier
+                    .background(MaterialTheme.colorScheme.background)
                     .padding(start = 20.dp)
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = title,
+                    text = location,
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+                Text(
+                    text = description,
+                    maxLines = 3,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
         }

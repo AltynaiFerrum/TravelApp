@@ -5,17 +5,6 @@ import com.google.gson.annotations.SerializedName
 import com.jyldyzferr.travelapp.domain.models.ToursNewDomain
 import kotlinx.android.parcel.Parcelize
 
-//data class ToursNewCloud(
-//    val createdAt: String,
-//    val description: String,
-//    val image: Image,
-//    val location: String,
-//    val objectId: String,
-//    val price: String,
-//    val rating: Int,
-//    val title: String,
-//    val updatedAt: String
-//)
 
 @Parcelize
 data class ToursNewCloud(

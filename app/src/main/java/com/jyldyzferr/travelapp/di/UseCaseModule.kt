@@ -2,7 +2,7 @@ package com.jyldyzferr.travelapp.di
 
 import com.jyldyzferr.travelapp.domain.repositories.CurrentUserRepository
 import com.jyldyzferr.travelapp.domain.repositories.LoginRepository
-import com.jyldyzferr.travelapp.domain.repositories.OshRepository
+import com.jyldyzferr.travelapp.domain.repositories.TourRepository
 import com.jyldyzferr.travelapp.domain.repositories.UserRepository
 import com.jyldyzferr.travelapp.domain.usecases.current_user.FetchCurrentUserUseCase
 import com.jyldyzferr.travelapp.domain.usecases.current_user.FetchCurrentUserUseCaseImpl
@@ -94,41 +94,41 @@ class UseCaseModule {
 
     @Provides
     fun provideFetchAllTripsUseCase(
-        repository: OshRepository
+        repository: TourRepository
     ): FetchAllTripsUseCase = FetchAllTripsUseCaseImpl(
-        oshRepository = repository
+        tourRepository = repository
     )
 
     @Provides
     fun provideFetchAllTripsByIdUseCase(
-        repository: OshRepository
+        repository: TourRepository
     ): FetchAllTripsByIdUseCase = FetchAllTripsByIdUseCaseImpl(
-        oshRepository = repository
+        tourRepository = repository
     )
 
     @Provides
     fun provideFetchAllSavedToursUseCase(
-        repository: OshRepository
+        repository: TourRepository
     ): FetchAllSavedToursUseCase = FetchAllSavedToursUseCaseImpl(
-        oshRepository = repository
+        tourRepository = repository
     )
 
     @Provides
     fun provideIsTourSavedUseCase(
-        repository: OshRepository
+        repository: TourRepository
     ): IsTourSavedUseCase = IsTourSavedUseCaseImpl(
-        oshRepository = repository
+        tourRepository = repository
     )
 
     @Provides
     fun provideTourOperatorUseCase(
-        repository: OshRepository
+        repository: TourRepository
     ): TourOperatorUseCase = TourOperatorUseCaseImpl(
-        oshRepository = repository
+        tourRepository = repository
     )
 @Provides
     fun provideSearchByQueryTripsUseCase(
-        repository: OshRepository
+        repository: TourRepository
     ): SearchByQueryTripsUseCase = SearchByQueryTripsUseCaseImpl(
         repository = repository
     )

@@ -37,7 +37,6 @@ class EditProfileViewModel @Inject constructor(
         val user = User.unknown
         _uiState.tryEmit(
             EditProfileUiState.Content(
-//                user = user,
                 name = user.name,
                 lastName = user.lastName,
                 email = user.email,
@@ -47,7 +46,6 @@ class EditProfileViewModel @Inject constructor(
 
     fun onEvent(event: EditProfileEvent) {
         when (event) {
-//            is EditProfileEvent.OnAboutChanged -> doAboutChanged(event.value)
             is EditProfileEvent.OnEmailChanged -> doEmailChanged(event.value)
             is EditProfileEvent.OnNameChanged -> doNameChanged(event.value)
             is EditProfileEvent.OnLastNameChanged -> doLastNameChanged(event.value)

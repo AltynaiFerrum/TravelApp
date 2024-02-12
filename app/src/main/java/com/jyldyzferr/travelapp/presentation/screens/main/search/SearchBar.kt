@@ -43,7 +43,6 @@ import com.jyldyzferr.travelapp.presentation.theme.MyGray
 @Composable
 fun SearchScreen(
     uiState: SearchUiState,
-//    popBackStack: () -> Unit,
     onValueChange: (String) -> Unit,
     navigateToDetails: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -79,13 +78,15 @@ fun SearchScreen(
                 )
             )
             when {
-                uiState.tours.isEmpty() -> NoSearchResultsTub()
+                uiState.query.isEmpty() -> NoSearchResultsTub()
                 uiState.isLoading -> LoadingScreen()
                 else -> LazyColumn {
                     items(items = uiState.tours, key = { it.objectId }) { tour ->
                         SearchWishListComponent(id = tour.objectId,
                             posterUrl = tour.image,
                             title = tour.title,
+                            location = tour.location,
+                            description = tour.description,
                             navigateToDetails = {
                                 navigateToDetails(it)
                             })
@@ -97,57 +98,6 @@ fun SearchScreen(
 }
 
 
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun SearchInputComponent(
-//    uiState: SearchUiState,
-//    onValueChange: (String) -> Unit,
-//    navigateToDetails: (String) -> Unit,
-//    modifier: Modifier = Modifier
-//) {
-//    OutlinedTextField(
-//        value = uiState.query,
-//        onValueChange = onValueChange,
-//        placeholder = { Text(text = "Search", fontFamily = MUSEO_MODERNO) },
-//        leadingIcon = {
-//            Icon(
-//                imageVector = Icons.Default.Search,
-//                contentDescription = "Search Icon"
-//            )
-//        },
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(top = 25.dp, start = 15.dp, end = 15.dp)
-//            .background(
-//                color = MyGray,
-//                shape = RoundedCornerShape(10.dp)
-//            ),
-//        colors = TextFieldDefaults.textFieldColors(
-//            focusedIndicatorColor = Color.Transparent,
-//            unfocusedIndicatorColor = Color.Transparent,
-//            cursorColor = Color.DarkGray,
-//        )
-//    )
-//    when {
-//        uiState.tours.isEmpty() -> NoSearchResultsTub()
-//        uiState.isLoading -> LoadingScreen()
-//        else ->
-//            LazyColumn {
-//                items(
-//                    items = uiState.tours,
-//                    key = {it.objectId}
-//                ) { tour ->
-//                    SearchWishListComponent(
-//                        posterUrl = tour.image,
-//                        title = tour.title,
-//                        navigateToDetails = {
-//                            navigateToDetails()
-//                        }
-//                    )
-//                }
-//            }
-//    }
-//}
 
 @Composable
 fun NoSearchResultsTub(
@@ -161,29 +111,24 @@ fun NoSearchResultsTub(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(30.dp))
             Image(
-                painter = painterResource(id = R.drawable.first_image_id),
+                painter = painterResource(id = R.drawable.oops),
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResource(id = R.string.account),
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    color = if (isSystemInDarkTheme()) Color.Black
-                    else Color.White
-                ),
+                text = "There is nothing yet",
+                color = MaterialTheme.colorScheme.background,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResource(id = R.string.third_onboarding_desc),
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = if (isSystemInDarkTheme()) Color.Black
-                    else Color.White
-                ),
+                text = "Try again!",
+                color = MaterialTheme.colorScheme.background,
                 textAlign = TextAlign.Center
             )
         }

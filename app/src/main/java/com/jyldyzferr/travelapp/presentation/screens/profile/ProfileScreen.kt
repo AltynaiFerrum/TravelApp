@@ -8,7 +8,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,14 +26,12 @@ import androidx.compose.material.Card
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Nightlight
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Wifi
-import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -44,7 +41,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -57,32 +53,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.jyldyzferr.travelapp.R
 import com.jyldyzferr.travelapp.presentation.components.SpacerHeight
 import com.jyldyzferr.travelapp.presentation.components.TabBarr
-import com.jyldyzferr.travelapp.presentation.navigations.BottomBarNavigationDestinations
-import com.jyldyzferr.travelapp.presentation.screens.auth.sign_up.SignUpDestination
 import com.jyldyzferr.travelapp.presentation.screens.common.ErrorScreen
 import com.jyldyzferr.travelapp.presentation.screens.common.LoadingScreen
-import com.jyldyzferr.travelapp.presentation.theme.BackgroundPrimaryDark
-import com.jyldyzferr.travelapp.presentation.theme.BackgroundPrimaryLight
 import com.jyldyzferr.travelapp.presentation.theme.ExtraLargeSpacing
 import com.jyldyzferr.travelapp.presentation.theme.GILROY
 import com.jyldyzferr.travelapp.presentation.theme.LargeSpacing
 import com.jyldyzferr.travelapp.presentation.theme.MyBlue1
-import kotlinx.coroutines.launch
 
 @Composable
 fun ProfileScreen(
     uiState: ProfileUiState,
     onEvent: (ProfileEvent) -> Unit,
     popBackStack: () -> Unit,
-    navigateToEditScreen: () -> Unit,
     navigateToSignIn: () -> Unit,
+    navigateToPremiumScreen: () -> Unit,
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
     modifier: Modifier = Modifier
@@ -99,11 +88,11 @@ fun ProfileScreen(
             uiState = uiState,
             onEvent = onEvent,
             modifier = modifier,
-            navigateToEditScreen = navigateToEditScreen,
             popBackStack = popBackStack,
             darkTheme = darkTheme,
             onThemeUpdated = onThemeUpdated,
-            navigateToSignIn = navigateToSignIn
+            navigateToSignIn = navigateToSignIn,
+            navigateToPremiumScreen = navigateToPremiumScreen
         )
     }
 }
@@ -111,8 +100,8 @@ fun ProfileScreen(
 @Composable
 fun LoadedProfileScreen(
     uiState: ProfileUiState.Content,
-    navigateToEditScreen: () -> Unit,
     popBackStack: () -> Unit,
+    navigateToPremiumScreen: () -> Unit,
     darkTheme: Boolean,
     navigateToSignIn: () -> Unit,
     onEvent: (ProfileEvent) -> Unit,
@@ -159,8 +148,7 @@ fun LoadedProfileScreen(
                     Icon(
                         modifier = Modifier
                             .size(16.dp)
-//                            .clickable { onEvent(ProfileEvent.OnEditProfile)},
-                            .clickable { navigateToEditScreen() },
+                            .clickable { onEvent(ProfileEvent.OnEditProfile) },
                         imageVector = Icons.Default.Edit,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onBackground
@@ -190,7 +178,8 @@ fun LoadedProfileScreen(
                         onThemeUpdated = onThemeUpdated,
                         text = "Do you want to log out?",
                         title = "Confirmation",
-                        navigateToSignIn = navigateToSignIn
+                        navigateToSignIn = navigateToSignIn,
+                        navigateToPremiumScreen = navigateToPremiumScreen
                     )
                 }
             }
@@ -222,6 +211,7 @@ fun Settings(
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
     navigateToSignIn: () -> Unit,
+    navigateToPremiumScreen: () -> Unit,
     title: String,
     text: String,
     modifier: Modifier = Modifier
@@ -264,7 +254,7 @@ fun Settings(
                 Text(
                     modifier = Modifier
                         .padding(start = 15.dp),
-                    text = "My account",
+                    text = "Create Tour",
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
                     fontFamily = GILROY,
@@ -292,11 +282,12 @@ fun Settings(
             Row(
                 modifier = Modifier
                     .clickable {
-                        Toast.makeText(
-                            context,
-                            "The feature is still in development",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        navigateToPremiumScreen()
+//                        Toast.makeText(
+//                            context,
+//                            "The feature is still in development",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
                     }
             ) {
                 Icon(
@@ -422,18 +413,9 @@ fun Settings(
                     confirmButton = {
                         androidx.compose.material.Button(onClick = {
                             navigateToSignIn()
-//                            onEvent(ProfileEvent.OnLogOut).also {
-//                                navHostController.navigate(SignUpDestination.route()){
-//                                    popUpTo(BottomBarNavigationDestinations.MAIN.route){
-//                                        inclusive = true
-//                                    }
-//                                }
-//
-//                            }
                         }) {
                             androidx.compose.material.Text(
                                 modifier = modifier,
-//                                    .clickable {  },
                                 text = "Confirm"
                             )
                         }
@@ -510,8 +492,6 @@ fun ThemeSwitcher(
                     imageVector = Icons.Default.Nightlight,
                     contentDescription = "Theme Icon",
                     tint = MaterialTheme.colorScheme.onBackground,
-//                    if (darkTheme) MaterialTheme.colorScheme.secondaryContainer
-//                    else MaterialTheme.colorScheme.primary
                 )
             }
             Box(
@@ -523,8 +503,6 @@ fun ThemeSwitcher(
                     imageVector = Icons.Default.LightMode,
                     contentDescription = "Theme Icon",
                     tint = MaterialTheme.colorScheme.onBackground,
-//                    tint = if (darkTheme) MaterialTheme.colorScheme.secondaryContainer
-//                    else MaterialTheme.colorScheme.primary
                 )
             }
         }

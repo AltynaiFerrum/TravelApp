@@ -4,11 +4,11 @@ import com.jyldyzferr.travelapp.domain.models.UserDomain
 
 
 data class User(
-    val avatar: String,
+    val avatar: String?,
     val createdAt: String,
     val email: String,
     val lastName: String,
-    val location: String,
+    val location: String?,
     val name: String,
     val objectId: String,
     val password: String,
@@ -19,12 +19,12 @@ data class User(
 
     companion object {
         val unknown = User(
-            avatar = String(),
+            avatar = null,
             createdAt = String(),
             email = "gmail.com",
             lastName = "Last Name",
             name = "Name",
-            location = String(),
+            location = null,
             objectId = String(),
             password = String(),
             updatedAt = String()

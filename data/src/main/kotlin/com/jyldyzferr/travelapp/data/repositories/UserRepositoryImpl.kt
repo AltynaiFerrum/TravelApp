@@ -11,7 +11,6 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val service: UserService,
-//    private val dao: TourDao,
 ) : UserRepository {
     override suspend fun fetchUserById(id: String): Result<UserDomain> {
         return try {

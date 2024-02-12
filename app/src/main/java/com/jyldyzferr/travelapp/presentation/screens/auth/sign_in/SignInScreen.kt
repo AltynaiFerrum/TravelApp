@@ -58,7 +58,6 @@ import com.jyldyzferr.travelapp.presentation.theme.MyWhite
 import com.jyldyzferr.travelapp.presentation.theme.POPPINS
 import kotlinx.coroutines.launch
 
-
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SignInScreen(
@@ -134,12 +133,6 @@ fun SignInScreen(
                             onEvent(SignInEvent.OnEmailChanged(value))
                         }
                     )
-//                    OutlinedTextFieldTravelEmail(
-//                        text = uiState.email,
-//                        onValueChange = { value ->
-//                            onEvent(SignInEvent.OnEmailChanged(value))
-//                        },
-//                    )
                     Spacer(modifier = modifier.height(24.dp))
                     MyTextField(
                         modifier = Modifier
@@ -151,23 +144,12 @@ fun SignInScreen(
                             onEvent(SignInEvent.OnPasswordChanged(value))
                         }
                     )
-//                    OutlinedTextFieldTravelPassword(
-//                        text = uiState.password,
-//                        onValueChange = { value ->
-//                            onEvent(SignInEvent.OnPasswordChanged(value))
-//                        },
-//                        isPassword = true
-//                    )
                     Spacer(modifier = modifier.height(30.dp))
                     Button(
                         onClick = { onEvent(SignInEvent.OnLoginClick) },
                         modifier = Modifier
                             .fillMaxWidth(1f)
                             .height(48.dp),
-//                        .padding(horizontal = 14.dp)
-//                            .width(327.dp)
-//                            .height(48.dp)
-//                            .clip(RoundedCornerShape(24.dp)),
                         shape = RoundedCornerShape(15.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MySignIn
@@ -196,7 +178,6 @@ fun SignInScreen(
                         Text(
                             modifier = Modifier
                                 .clickable { navigateToPassword() },
-//                                .clickable { onEvent(SignInEvent.OnResetPasswordClick) },
                             text = stringResource(id = R.string.reset_password),
                             fontFamily = POPPINS,
                             fontWeight = FontWeight.Normal,
@@ -205,61 +186,6 @@ fun SignInScreen(
                         )
                     }
                     Spacer(modifier = modifier.height(24.dp))
-//                    Row(
-//                        modifier = Modifier
-//                            .padding(horizontal = 55.dp)
-//                    ) {
-//                        Divider(
-//                            color = MyBlue1,
-//                            modifier = Modifier
-//                                .width(66.dp)
-//                                .height(1.dp)
-//                        )
-//                        Spacer(modifier = Modifier.width(4.dp))
-//                        Text(
-//                            modifier = Modifier
-//                                .padding(start = 0.dp)
-//                                .padding(bottom = 5.dp),
-//                            text = "Or continue with",
-//                            fontSize = 12.sp,
-//                            fontWeight = FontWeight.Normal,
-//                            style = MaterialTheme.typography.bodySmall,
-//                            color = MyBlue1
-//                        )
-//                        Spacer(modifier = Modifier.width(4.dp))
-//                        Divider(
-//                            color = MyBlue1,
-//                            modifier = Modifier
-//                                .width(66.dp)
-//                                .height(1.dp)
-//                        )
-//                    }
-//                    Row(
-//                        modifier = Modifier
-//                    ) {
-//                        Image(
-//                            modifier = modifier
-//                                .width(120.dp)
-//                                .height(28.dp),
-//                            painter = painterResource(id = R.drawable.facebook_travel),
-//                            contentDescription = null,
-//                        )
-//                        Image(
-//                            modifier = modifier
-//                                .width(120.dp)
-//                                .height(28.dp),
-//                            painter = painterResource(id = R.drawable.google_travel),
-//                            contentDescription = null,
-//                        )
-//                        Image(
-//                            modifier = modifier
-//                                .width(120.dp)
-//                                .height(28.dp),
-//                            painter = painterResource(id = R.drawable.mac_travel),
-//                            contentDescription = null,
-//                        )
-//                    }
-//                    Spacer(modifier = modifier.height(40.dp))
                     Row(
                         modifier = Modifier
                             .padding(horizontal = 55.dp)
@@ -277,7 +203,6 @@ fun SignInScreen(
                         Text(
                             modifier = Modifier
                                 .clickable { navigateToSignUp() },
-//                                .clickable { onEvent(SignInEvent.OnSignUpClick) },
                             text = stringResource(id = R.string.sign_up),
                             fontSize = 13.sp,
                             color = MyBlue3,

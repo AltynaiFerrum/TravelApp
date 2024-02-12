@@ -93,11 +93,6 @@ fun OnboardingScreen(
             }
             val page = onboardings[pagerState.currentPage]
             if (page is OnboardingPageItem.Onboarding) {
-//                Image(
-//                    painter = painterResource(id = page.imageId),
-//                    contentDescription = null,
-//                    contentScale = ContentScale.Crop
-//                )
                 SpacerHeight(16.dp)
                 Text(
                     modifier = Modifier
@@ -176,9 +171,6 @@ fun OnboardingAnimatedTextField(
         modifier = modifier
             .width(165.dp)
             .height(56.dp)
-//            .padding(horizontal = 36.dp)
-//            .fillMaxWidth()
-//            .height(52.dp)
             .advancedShadow(
                 color = MyOrange,
                 alpha = 0.9f,
