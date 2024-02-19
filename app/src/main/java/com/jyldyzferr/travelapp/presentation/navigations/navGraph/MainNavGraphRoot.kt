@@ -1,5 +1,7 @@
 package com.jyldyzferr.travelapp.presentation.navigations.navGraph
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -17,12 +19,22 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jyldyzferr.travelapp.presentation.navigations.AppBottomNavigation
 import com.jyldyzferr.travelapp.presentation.navigations.BottomBarNavigationDestinations
+import com.jyldyzferr.travelapp.presentation.screens.auth.sign_up.SignUpViewModel
+import com.jyldyzferr.travelapp.presentation.screens.booking_pass.BOARDING_PASS_ROUTE
+import com.jyldyzferr.travelapp.presentation.screens.booking_pass.BoardingPassScreen
+import com.jyldyzferr.travelapp.presentation.screens.booking.FLIGHT_BOOKING_ROUTE
+import com.jyldyzferr.travelapp.presentation.screens.booking.FlightBookingScreen
+import com.jyldyzferr.travelapp.presentation.screens.booking.FlightBookingViewModel
+import com.jyldyzferr.travelapp.presentation.screens.booking_pass.BoardingPassViewModel
+import com.jyldyzferr.travelapp.presentation.screens.booking_pass.SELECT_FLIGHT_ROUTE
+import com.jyldyzferr.travelapp.presentation.screens.booking_pass.SelectYourFlightScreen
+import com.jyldyzferr.travelapp.presentation.screens.details.BookingScreen
 import com.jyldyzferr.travelapp.presentation.screens.details.DetailDestination
 import com.jyldyzferr.travelapp.presentation.screens.details.DetailsAboutTourScreen
 import com.jyldyzferr.travelapp.presentation.screens.details.DetailsScreenViewModel
+import com.jyldyzferr.travelapp.presentation.screens.details.HOTEL_BOOKING_ROUTE
 import com.jyldyzferr.travelapp.presentation.screens.details.TOUR_ID
 import com.jyldyzferr.travelapp.presentation.screens.edit_profile.EDIT_PROFILE_ROUTE
-import com.jyldyzferr.travelapp.presentation.screens.edit_profile.EditProfileDestination
 import com.jyldyzferr.travelapp.presentation.screens.edit_profile.EditProfileScreen
 import com.jyldyzferr.travelapp.presentation.screens.edit_profile.EditProfileViewModel
 import com.jyldyzferr.travelapp.presentation.screens.favorite.FavoriteListViewModel
@@ -42,6 +54,7 @@ import com.jyldyzferr.travelapp.presentation.theme.TravelAppTheme
 
 const val MAIN_NAV_GRAPH_ROUTE = "main_nav_graph_route"
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainNavGraphRoot(
     modifier: Modifier = Modifier
@@ -65,7 +78,11 @@ fun MainNavGraphRoot(
             ) {
                 composable(BottomBarNavigationDestinations.MAIN.route) {
                     val viewModel: MainToursViewModel = hiltViewModel()
+//                    val viewModel: DetailViewModel = hiltViewModel()
                     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+//                    BookingScreen(
+////                        detailViewModel = viewModel
+//                    )
                     MainScreenSecond(
                         uiState = uiState,
                         navigateToDetails = { tourId ->
@@ -100,7 +117,9 @@ fun MainNavGraphRoot(
                 composable(route = BottomBarNavigationDestinations.PROFILE.route) {
                     val viewModel: ProfileViewModel = hiltViewModel()
                     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-                    val navCommand by viewModel.navCommandFlow.collectAsStateWithLifecycle(initialValue = null)
+                    val navCommand by viewModel.navCommandFlow.collectAsStateWithLifecycle(
+                        initialValue = null
+                    )
 
                     LaunchedEffect(key1 = navCommand) {
                         if (navCommand != null) navHostController.navigate(navCommand!!)
@@ -162,6 +181,52 @@ fun MainNavGraphRoot(
                         addOrDeleteMovie = {
                             viewModel.addOrDeleteTour(tourId)
                         },
+                        navigateToFlightBookingScreen = {
+                            navHostController.navigate(FLIGHT_BOOKING_ROUTE)
+                        },
+                        navigateToHotelBookingScreen = {
+                            navHostController.navigate(HOTEL_BOOKING_ROUTE)
+                        }
+                    )
+                }
+                composable(HOTEL_BOOKING_ROUTE) {
+                    BookingScreen(
+                    )
+                }
+                composable(FLIGHT_BOOKING_ROUTE) {
+                    val viewModel: FlightBookingViewModel = hiltViewModel()
+
+                    FlightBookingScreen(
+                        addToBasket = viewModel::addToBasket,
+                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+                        onEvent = viewModel::onEvent,
+//                        navigateToSelectFlight = {
+//                            navHostController.navigate(SELECT_FLIGHT_ROUTE)
+//                        }
+                    )
+                }
+                composable(SELECT_FLIGHT_ROUTE) {
+                    val viewModel: BoardingPassViewModel = hiltViewModel()
+                    val navCommand by viewModel.navCommandFlow.collectAsStateWithLifecycle(
+                        initialValue = null
+                    )
+                    LaunchedEffect(key1 = navCommand) {
+                        if (navCommand != null) navHostController.navigate(navCommand!!)
+                    }
+                    SelectYourFlightScreen(
+                        navigateToBoardingPass = {
+                            navHostController.navigate(BOARDING_PASS_ROUTE)
+                        },
+                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+                    )
+                }
+                composable(BOARDING_PASS_ROUTE) {
+                    val viewModel: BoardingPassViewModel = hiltViewModel()
+                    BoardingPassScreen(
+                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+//                        navigateToBoardingPass = {
+//
+//                        }
                     )
                 }
             }

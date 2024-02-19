@@ -1,9 +1,16 @@
 package com.jyldyzferr.travelapp.di
 
+import com.jyldyzferr.travelapp.domain.repositories.BookingRepository
 import com.jyldyzferr.travelapp.domain.repositories.CurrentUserRepository
 import com.jyldyzferr.travelapp.domain.repositories.LoginRepository
 import com.jyldyzferr.travelapp.domain.repositories.TourRepository
 import com.jyldyzferr.travelapp.domain.repositories.UserRepository
+import com.jyldyzferr.travelapp.domain.usecases.booking.BookingFlightUseCase
+import com.jyldyzferr.travelapp.domain.usecases.booking.BookingFlightUseCaseImpl
+import com.jyldyzferr.travelapp.domain.usecases.booking.CurrentBookingUseCase
+import com.jyldyzferr.travelapp.domain.usecases.booking.CurrentBookingUseCaseImpl
+import com.jyldyzferr.travelapp.domain.usecases.booking.FetchBookingOrderUseCase
+import com.jyldyzferr.travelapp.domain.usecases.booking.FetchBookingOrderUseCaseImpl
 import com.jyldyzferr.travelapp.domain.usecases.current_user.FetchCurrentUserUseCase
 import com.jyldyzferr.travelapp.domain.usecases.current_user.FetchCurrentUserUseCaseImpl
 import com.jyldyzferr.travelapp.domain.usecases.current_user.SaveCurrentUserUseCase
@@ -126,10 +133,32 @@ class UseCaseModule {
     ): TourOperatorUseCase = TourOperatorUseCaseImpl(
         tourRepository = repository
     )
-@Provides
+
+    @Provides
     fun provideSearchByQueryTripsUseCase(
         repository: TourRepository
     ): SearchByQueryTripsUseCase = SearchByQueryTripsUseCaseImpl(
+        repository = repository
+    )
+
+    @Provides
+    fun provideFetchBookingOrderUseCase(
+        repository: BookingRepository
+    ): FetchBookingOrderUseCase = FetchBookingOrderUseCaseImpl(
+        bookingRepository = repository
+    )
+
+    @Provides
+    fun provideBookingFlightUseCase(
+        repository: BookingRepository
+    ): BookingFlightUseCase = BookingFlightUseCaseImpl(
+        repository = repository
+    )
+
+    @Provides
+    fun provideCurrentBookingUseCase(
+        repository: BookingRepository
+    ): CurrentBookingUseCase = CurrentBookingUseCaseImpl(
         repository = repository
     )
 

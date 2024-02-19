@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -40,6 +42,7 @@ import coil.compose.AsyncImage
 import com.jyldyzferr.travelapp.presentation.models.Tour
 import com.jyldyzferr.travelapp.presentation.screens.common.ErrorScreen
 import com.jyldyzferr.travelapp.presentation.screens.common.LoadingMainScreen
+import com.jyldyzferr.travelapp.presentation.screens.common.LoadingScreen
 import com.jyldyzferr.travelapp.presentation.theme.GILROY
 import com.jyldyzferr.travelapp.presentation.theme.MyBlue5
 import com.jyldyzferr.travelapp.presentation.theme.MySignIn
@@ -53,7 +56,7 @@ fun MainScreenSecond(
 ) {
     when (uiState) {
         is MainUiState.Initial -> Unit
-        is MainUiState.Loading -> LoadingMainScreen()
+        is MainUiState.Loading -> LoadingScreen()
         is MainUiState.Error -> ErrorScreen(
             message = uiState.message, onClick = {}
         )
@@ -102,18 +105,29 @@ fun HomeScreenSecond(
                 contentDescription = "Search",
             )
         }
-        LazyColumn(
+        HomeTopComponent(
+            viewModel = HomeViewModel()
+        )
+        Spacer(modifier = Modifier.height(5.dp))
+        Text(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
+                .padding(start = 18.dp),
+            text = "All Tours",
+            fontFamily = GILROY,
+            color = MaterialTheme.colorScheme.onBackground,
+            style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.ExtraBold),
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
+            contentPadding = PaddingValues(horizontal = 24.dp),
         ) {
             items(
                 items = tours,
                 key = { it.objectId }
             ) { tours ->
-                BookDetails(
+                PopularPlaceCard(
                     image = tours.image,
                     title = tours.title,
-                    description = tours.description,
                     id = tours.objectId,
                     navigateToDetailScreen = {
                         navigateToDetailScreen(it)
@@ -121,6 +135,40 @@ fun HomeScreenSecond(
                 )
             }
         }
+
+//            content = {
+//                items(tours.size,
+//                ) { index ->
+//                    PopularPlaceCard(
+//                        tourism = tours[index],
+//                        modifier = modifier,
+////                            onClickCard = { navigateToDetail(tourismList[index].id) }
+//                    )
+//                }
+//            }
+
+
+//        LazyColumn(
+//            modifier = Modifier
+//                .background(MaterialTheme.colorScheme.background)
+//        ) {
+//            items(
+//                items = tours,
+//                key = { it.objectId }
+//            ) { tours ->
+//                BookDetails(
+//                    image = tours.image,
+//                    title = tours.title,
+//                    description = tours.description,
+//                    id = tours.objectId,
+//                    navigateToDetailScreen = {
+//                        navigateToDetailScreen(it)
+//                    }
+//                )
+//            }
+//        }
+
+
     }
 }
 
@@ -147,7 +195,6 @@ fun BookDetails(
                 contentDescription = null,
                 modifier = Modifier
                     .shadow(20.dp, shape = RoundedCornerShape(30.dp), true)
-
             )
         }
         Row {

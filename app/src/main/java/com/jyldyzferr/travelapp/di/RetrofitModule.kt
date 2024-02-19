@@ -1,5 +1,6 @@
 package com.jyldyzferr.travelapp.di
 
+import com.jyldyzferr.travelapp.data.cloud.service.BookingService
 import com.jyldyzferr.travelapp.data.cloud.service.LoginService
 import com.jyldyzferr.travelapp.data.cloud.service.TourService
 import com.jyldyzferr.travelapp.data.cloud.service.UserService
@@ -67,4 +68,8 @@ class RetrofitModule {
     fun provideOshService(
         retrofit: Retrofit
     ): TourService = retrofit.create(TourService::class.java)
+    @Provides
+    fun provideBookingService(
+        retrofit: Retrofit
+    ): BookingService = retrofit.create(BookingService::class.java)
 }

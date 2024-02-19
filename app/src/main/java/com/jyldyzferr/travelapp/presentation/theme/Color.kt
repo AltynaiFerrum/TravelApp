@@ -23,7 +23,23 @@ val MyBackground = Color(0xFFFEFAF5)
 val MyTextField1 = Color(0xFF949494)
 val MyTextField = Color(0xFF5A6E73)
 val MySignIn = Color(0xFF03242C)
+val SearchFlights = Color(0xFF81C6ED)
+val SearchBackground = Color(0xFFBDDBF1)
 val MyDarkGrey = Color(0xFF333333)
+val BackgroundFlight = Color(0xFF7C88A9)
+
+val WhiteColor  = Color(0xFFFFFFFF)
+val BlackColor500  = Color(0xFF1F1449)
+val GreyColor300  = Color(0xFF9698A9)
+val DisabledColor = Color(0x92C45739)
+
+
+val Grey = Color(0xFF989185)
+val DarkGrey = Color(0xFF404040)
+val Orange = Color(0xFFFF5524)
+val LightOrange = Color(0x80FF5524)
+val LightGrey = Color(0xFFEFEFEF)
+
 
 
 val primaryDark = Color(0xFF161616)

@@ -24,6 +24,9 @@ androidxComposeRuntimeTracing = "1.0.0-alpha04"
 androidxLifecycle = "2.6.2"
 parse = "1.17.3"
 materialIconsExtended = "1.5.4"
+material3 = "1.2.0-beta01"
+multidatepicker = "1.0.1"
+
 
 
 
@@ -67,6 +70,11 @@ foundation = { module = "androidx.compose.foundation:foundation", version.ref = 
 parse_android = { module = "com.parse:parse-android", version.ref = "parse" }
 
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+
+material3 = { group = "androidx.compose.material3", name = "material3", version.ref="material3" }
+
+multidatepicker = { module = "com.github.playmoweb:MultiDatePicker", version.ref = "multidatepicker" }
+
 
 # Compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }

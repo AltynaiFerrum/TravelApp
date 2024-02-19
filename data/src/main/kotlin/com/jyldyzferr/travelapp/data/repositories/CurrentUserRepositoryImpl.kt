@@ -2,6 +2,7 @@ package com.jyldyzferr.travelapp.data.repositories
 
 import android.content.Context
 import com.google.gson.Gson
+import com.jyldyzferr.travelapp.domain.models.BookingDomain
 import com.jyldyzferr.travelapp.domain.models.UserDomain
 import com.jyldyzferr.travelapp.domain.repositories.CurrentUserRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -26,11 +27,20 @@ class CurrentUserRepositoryImpl @Inject constructor(
         prefEditor.apply()
     }
 
+    override fun saveCurrentBooking(): BookingDomain {
+        return try {
+            val json = sharedPreferences.getString(CURRENT_USER_NAME, String()) ?: String()
+            Gson().fromJson(json, BookingDomain::class.java)
+        } catch (e: Exception) {
+            BookingDomain.unknown
+        }
+    }
+
     override fun fetchCurrentUser(): UserDomain {
-        return try{
+        return try {
             val json = sharedPreferences.getString(CURRENT_USER_NAME, String()) ?: String()
             Gson().fromJson(json, UserDomain::class.java)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             UserDomain.unknown
         }
     }

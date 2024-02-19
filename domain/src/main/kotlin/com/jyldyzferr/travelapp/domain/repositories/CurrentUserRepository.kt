@@ -1,11 +1,13 @@
 package com.jyldyzferr.travelapp.domain.repositories
 
+import com.jyldyzferr.travelapp.domain.models.BookingDomain
 import com.jyldyzferr.travelapp.domain.models.UserDomain
 
 interface CurrentUserRepository {
 
     fun saveCurrentUser(user: UserDomain)
 
+    fun saveCurrentBooking() : BookingDomain
     fun fetchCurrentUser(): UserDomain
 
     fun clearCurrentUser()

@@ -2,6 +2,7 @@ package com.jyldyzferr.travelapp.presentation.screens.details
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,8 +30,10 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarHalf
 import androidx.compose.material.icons.filled.StarOutline
@@ -59,6 +63,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.google.accompanist.insets.LocalWindowInsets
 import com.jyldyzferr.travelapp.R
+import com.jyldyzferr.travelapp.presentation.components.MyTextField
 import com.jyldyzferr.travelapp.presentation.models.Tour
 import com.jyldyzferr.travelapp.presentation.screens.common.ErrorScreen
 import com.jyldyzferr.travelapp.presentation.screens.common.LoadingScreen
@@ -82,6 +87,8 @@ fun DetailsAboutTourScreen(
     uiStateFlow: StateFlow<DetailsUiState>,
     fetchTour: () -> Unit,
     addOrDeleteMovie: () -> Unit,
+    navigateToHotelBookingScreen: () -> Unit,
+    navigateToFlightBookingScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberLazyListState()
@@ -104,6 +111,8 @@ fun DetailsAboutTourScreen(
             scrollState = scrollState,
             modifier = modifier,
             navigateToInfoScreen = navigateToInfoScreen,
+            navigateToHotelBookingScreen = navigateToHotelBookingScreen,
+            navigateToFlightBookingScreen = navigateToFlightBookingScreen
         )
     }
 }
@@ -117,6 +126,8 @@ fun ContentDetailsScreen(
     navigateToInfoScreen: () -> Unit,
     isSaved: Boolean,
     scrollState: LazyListState,
+    navigateToHotelBookingScreen: () -> Unit,
+    navigateToFlightBookingScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box {
@@ -129,6 +140,8 @@ fun ContentDetailsScreen(
                     isSaved = isSaved,
                     scrollState = scrollState,
                     navigateToInfoScreen = navigateToInfoScreen,
+                    navigateToHotelBookingScreen = navigateToHotelBookingScreen,
+                    navigateToFlightBookingScreen = navigateToFlightBookingScreen
                 )
             }
         }
@@ -143,6 +156,8 @@ fun LoadedDetailsScreen(
     tour: Tour,
     addOrDeleteMovie: () -> Unit,
     isSaved: Boolean,
+    navigateToHotelBookingScreen: () -> Unit,
+    navigateToFlightBookingScreen: () -> Unit,
     scrollState: LazyListState,
     modifier: Modifier = Modifier
 ) {
@@ -158,7 +173,9 @@ fun LoadedDetailsScreen(
                 BasicInfoDetails(tripEvent = tour)
                 DescriptionDetails(text = tour.description)
                 BookingButton(
-                    navigateToInfoScreen = navigateToInfoScreen
+                    navigateToInfoScreen = navigateToInfoScreen,
+                    navigateToHotelBookingScreen = navigateToHotelBookingScreen,
+                    navigateToFlightBookingScreen = navigateToFlightBookingScreen
                 )
                 DetailImages(tour)
                 Spacer(modifier = Modifier.height(30.dp))
@@ -269,25 +286,54 @@ fun DescriptionDetails(
 
 @Composable
 fun BookingButton(
-    navigateToInfoScreen: () -> Unit
+    navigateToInfoScreen: () -> Unit,
+    navigateToHotelBookingScreen: () -> Unit,
+    navigateToFlightBookingScreen: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Button(
-        onClick = { navigateToInfoScreen() },
-        elevation = null,
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = if (isSystemInDarkTheme()) MySignIn
-            else MyBlue5,
-        ), modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+    Row(
+        modifier = Modifier,
+        horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
-        Text(
-            text = "Book a trip",
-            color = MaterialTheme.colorScheme.onBackground,
-            fontFamily = GILROY,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(8.dp)
-        )
+        OutlinedButton(
+            onClick = { navigateToInfoScreen() },
+            modifier = modifier
+                .padding(start = 20.dp),
+            border = BorderStroke(1.dp, Color.Red),
+            shape = RoundedCornerShape(50), // = 50% percent
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red)
+        ) {
+            Text(
+                text = "Book Tour",
+                color = MaterialTheme.colorScheme.onBackground,
+            )
+        }
+        Spacer(modifier = modifier.width(20.dp))
+        OutlinedButton(
+            onClick = {navigateToHotelBookingScreen() },
+            modifier = modifier,
+            border = BorderStroke(1.dp, Color.Red),
+            shape = RoundedCornerShape(50), // = 50% percent
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red)
+        ) {
+            Text(
+                text = "Booking Hotel",
+                color = MaterialTheme.colorScheme.onBackground,
+            )
+        }
+        Spacer(modifier = modifier.width(20.dp))
+        OutlinedButton(
+            onClick = { navigateToFlightBookingScreen()},
+            modifier = modifier,
+            border = BorderStroke(1.dp, Color.Red),
+            shape = RoundedCornerShape(50), // = 50% percent
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red)
+        ) {
+            Text(
+                text = "Flight",
+                color = MaterialTheme.colorScheme.onBackground,
+            )
+        }
     }
 }
 
