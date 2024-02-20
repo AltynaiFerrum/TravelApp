@@ -60,6 +60,7 @@ import com.jyldyzferr.travelapp.presentation.theme.GreyColor300
 import com.jyldyzferr.travelapp.presentation.theme.MySignIn
 import com.jyldyzferr.travelapp.presentation.theme.POPPINS
 import com.jyldyzferr.travelapp.presentation.theme.WhiteColor
+import com.jyldyzferr.travelapp.presentation.theme.primaryDark
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -166,9 +167,9 @@ data class CarouselDataModel(
             add(
                 CarouselDataModel(
                     resId = R.drawable.first_image_id,
-                    title = "Nike",
-                    description = "Airmax 100",
-                    price = "₹ 15,000",
+                    title = "Bali",
+                    description = "Best trip",
+                    price = "$ 1500",
                     categoryType = ButtonState.DEFAULT,
                     color = Color(0xFFeb4658)
                 )
@@ -177,8 +178,8 @@ data class CarouselDataModel(
                 CarouselDataModel(
                     resId = R.drawable.second_image_id,
                     title = "Reebok",
-                    description = "Epic React 2",
-                    price = "₹ 20,000",
+                    description = "Thailand",
+                    price = "$ 20,000",
                     categoryType = ButtonState.LOADED,
                     color = Color(0xFF6887cb)
                 )
@@ -186,9 +187,9 @@ data class CarouselDataModel(
             add(
                 CarouselDataModel(
                     resId = R.drawable.third_image_id,
-                    title = "Under Armour",
-                    description = "Hovr 2022",
-                    price = "₹ 10,000",
+                    title = "Your Fav",
+                    description = "Tokyo",
+                    price = "$ 10,000",
                     categoryType = ButtonState.DEFAULT,
                     color = Color(0xFFfe7153)
                 )
@@ -263,7 +264,7 @@ fun HomeTopComponent(
                         },
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold,
-                    color = if (selectedCategory.value == index) MySignIn else Color.LightGray,
+                    color = MaterialTheme.colorScheme.onBackground,
                     maxLines = 1,
                 )
             }
@@ -358,7 +359,7 @@ fun PopularPlaceCard(
                 fontFamily = POPPINS,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = primaryDark,
             )
 //            Spacer(modifier = Modifier.height(5.dp))
 //            Text(

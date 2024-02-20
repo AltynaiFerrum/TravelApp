@@ -8,7 +8,7 @@ import com.jyldyzferr.travelapp.domain.repositories.CurrentUserRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-private const val SETTINGS_SHARED_PREF_NAME = "settings_file"
+const val SETTINGS_SHARED_PREF_NAME = "settings_file"
 private const val IS_ONBOARDING_PASSED_NAME = "is_onboarding_passed"
 private const val CURRENT_USER_NAME = "current_user_name"
 
@@ -27,14 +27,6 @@ class CurrentUserRepositoryImpl @Inject constructor(
         prefEditor.apply()
     }
 
-    override fun saveCurrentBooking(): BookingDomain {
-        return try {
-            val json = sharedPreferences.getString(CURRENT_USER_NAME, String()) ?: String()
-            Gson().fromJson(json, BookingDomain::class.java)
-        } catch (e: Exception) {
-            BookingDomain.unknown
-        }
-    }
 
     override fun fetchCurrentUser(): UserDomain {
         return try {

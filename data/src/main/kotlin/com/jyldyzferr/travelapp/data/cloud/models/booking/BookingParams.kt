@@ -18,8 +18,7 @@ data class BookingParams(
     val passport: String,
     @SerializedName("return")
     val returnDate: String,
-) : java.io.Serializable
-
+)
 
 fun BookingBasketDomain.toDomain() = this.run {
     BookingParams(

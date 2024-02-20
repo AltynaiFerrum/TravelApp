@@ -15,7 +15,7 @@ class FetchBookingOrderUseCaseImpl constructor(
     private val bookingRepository: BookingRepository,
 ):FetchBookingOrderUseCase{
     override suspend fun boardingPass(): Result<List<BookingDomain>> {
-        return bookingRepository.boardingPass()
+        return TODO()
     }
 
 }

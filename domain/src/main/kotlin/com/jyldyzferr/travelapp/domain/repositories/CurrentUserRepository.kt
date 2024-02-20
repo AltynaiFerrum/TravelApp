@@ -7,7 +7,6 @@ interface CurrentUserRepository {
 
     fun saveCurrentUser(user: UserDomain)
 
-    fun saveCurrentBooking() : BookingDomain
     fun fetchCurrentUser(): UserDomain
 
     fun clearCurrentUser()

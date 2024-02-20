@@ -22,7 +22,7 @@ fun UserCloud.toDomain(): UserDomain = this.run {
 }
 fun BookingCloud.toDomain(): BookingDomain = this.run {
     BookingDomain(
-        createdAt = createdAt,
+//        createdAt = createdAt,
         location = location,
         objectId = objectId,
         updatedAt = updatedAt,

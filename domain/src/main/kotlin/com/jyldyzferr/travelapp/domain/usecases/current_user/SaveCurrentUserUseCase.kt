@@ -15,3 +15,4 @@ class SaveCurrentUserUseCaseImpl(
         return repository.saveCurrentUser(user)
     }
 }
+

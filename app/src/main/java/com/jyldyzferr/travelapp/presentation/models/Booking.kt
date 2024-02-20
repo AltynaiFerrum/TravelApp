@@ -5,16 +5,15 @@ import com.jyldyzferr.travelapp.domain.models.BookingDomain
 import com.jyldyzferr.travelapp.domain.models.UserDomain
 import javax.annotation.concurrent.Immutable
 
-@Immutable
 data class Booking(
     val departure: String,
     val destination: String,
     val location: String,
 //    val money: String,
-    val objectId: String,
+    val objectId: String?,
     val passport: String,
     val returnDate: String,
-    val updatedAt: String
+    val updatedAt: String?
 ) {
     fun isUnknown() = this == unknown
     fun isNotUnknown() = this != unknown
@@ -22,8 +21,8 @@ data class Booking(
     companion object {
         val unknown = Booking(
             location = String(),
-            objectId = String(),
-            updatedAt = String(),
+            objectId = null,
+            updatedAt = null,
             passport = String(),
             destination = String(),
             departure = String(),
@@ -31,5 +30,17 @@ data class Booking(
             returnDate = String()
         )
     }
+}
+fun BookingDomain.toUser() = this.run {
+    if (this == BookingDomain.unknown) return@run User.unknown
+    Booking(
+        objectId = objectId,
+        updatedAt = updatedAt,
+        location = location,
+        passport = passport,
+        destination = destination,
+        departure = departure,
+        returnDate = returnDate
+    )
 }
 

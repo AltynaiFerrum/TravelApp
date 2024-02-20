@@ -10,7 +10,7 @@ class SignUpUseCaseImpl constructor(
     private val repository: LoginRepository,
     private val userRepository: UserRepository,
 
-    ): SignUpUseCase {
+    ) : SignUpUseCase {
     override suspend fun invoke(
         email: String,
         password: String,
@@ -35,11 +35,11 @@ class SignUpUseCaseImpl constructor(
             return Result.Error(message = "Incorrect fill password")
         }
 
-       val response = repository.signUp(
+        val response = repository.signUp(
             name = name,
             email = email,
             password = password,
-           lastName= lastName
+            lastName = lastName
         )
         return userRepository.fetchUserById(response.data?.id ?: String())
     }

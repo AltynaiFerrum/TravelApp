@@ -45,24 +45,25 @@ const val BOARDING_PASS_ROUTE = "boarding_pass_route"
 
 @Composable
 fun BoardingPassScreen(
-    uiState: BoardingPassUiState,
+//    uiState: BoardingPassUiState,
 ) {
-    when (uiState) {
-        is BoardingPassUiState.Initial -> Unit
-        is BoardingPassUiState.Loading -> LoadingScreen()
-        is BoardingPassUiState.Error -> ErrorScreen(
-            message = uiState.message,
-            onClick = { }
-        )
-
-        is BoardingPassUiState.Content -> BoardingPassScreenOne(
-            uiState = uiState,
-        )
-    }
+    BoardingPassScreenOne()
+//    when (uiState) {
+//        is BoardingPassUiState.Initial -> Unit
+//        is BoardingPassUiState.Loading -> LoadingScreen()
+//        is BoardingPassUiState.Error -> ErrorScreen(
+//            message = uiState.message,
+//            onClick = { }
+//        )
+//
+//        is BoardingPassUiState.Content -> BoardingPassScreenOne(
+//            uiState = uiState,
+//        )
+//    }
 }
 @Composable
 fun BoardingPassScreenOne(
-    uiState: BoardingPassUiState.Content,
+//    uiState: BoardingPassUiState.Content,
 //    onEvent: (BoardingPassEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -127,7 +128,7 @@ fun BoardingPassScreenOne(
                         )
                         Spacer(modifier = Modifier.width(30.dp))
                         Text(
-                            text = uiState.booking.departure,
+                            text = "Feb 22, 2024",
                             fontFamily = GILROY,
                             fontSize = 14.sp,
                         )

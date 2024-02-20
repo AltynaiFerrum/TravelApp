@@ -323,7 +323,7 @@ fun TotalSection(
                     modifier = Modifier.weight(1f),
                     text = stringResource(R.string.service_fee),
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.inversePrimary
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
                 Text(
                     modifier = Modifier.weight(1f),
@@ -332,7 +332,7 @@ fun TotalSection(
                         (property.cleaning_fee ?: 0).toFloat()
                     ),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.inversePrimary,
+                    color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.End
                 )
             }
@@ -347,7 +347,7 @@ fun TotalSection(
                     modifier = Modifier.weight(1f),
                     text = "Total",
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.inversePrimary
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
 
                 Text(
@@ -360,7 +360,7 @@ fun TotalSection(
                         ).getTotalDays()).toFloat()
                     ),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.inversePrimary,
+                    color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.End
                 )
             }
@@ -455,8 +455,6 @@ fun GuestSection(
                     },
                     modifier = Modifier.fillMaxWidth()
                 )
-
-
                 GuestCounter(guestType = GuestType.INFANT,
                     guestState = guestState,
                     property = property,

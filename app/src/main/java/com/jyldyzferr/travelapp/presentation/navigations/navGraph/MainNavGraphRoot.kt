@@ -195,14 +195,19 @@ fun MainNavGraphRoot(
                 }
                 composable(FLIGHT_BOOKING_ROUTE) {
                     val viewModel: FlightBookingViewModel = hiltViewModel()
-
+                    val navCommand by viewModel.navCommandFlow.collectAsStateWithLifecycle(
+                        initialValue = null
+                    )
+                    LaunchedEffect(key1 = navCommand) {
+                        if (navCommand != null) navHostController.navigate(navCommand!!)
+                    }
                     FlightBookingScreen(
-                        addToBasket = viewModel::addToBasket,
-                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+//                        addToBasket = viewModel::addToBasket,
+                        uiState = viewModel.uiStateFlow.collectAsStateWithLifecycle().value,
                         onEvent = viewModel::onEvent,
-//                        navigateToSelectFlight = {
-//                            navHostController.navigate(SELECT_FLIGHT_ROUTE)
-//                        }
+                        navigateToSelectFlight = {
+                            navHostController.navigate(SELECT_FLIGHT_ROUTE)
+                        }
                     )
                 }
                 composable(SELECT_FLIGHT_ROUTE) {
@@ -217,13 +222,16 @@ fun MainNavGraphRoot(
                         navigateToBoardingPass = {
                             navHostController.navigate(BOARDING_PASS_ROUTE)
                         },
-                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+//                        fetchBooking = {
+//                            viewModel.init(bookingId = String())
+//                        },
+//                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
                     )
                 }
                 composable(BOARDING_PASS_ROUTE) {
                     val viewModel: BoardingPassViewModel = hiltViewModel()
                     BoardingPassScreen(
-                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+//                        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
 //                        navigateToBoardingPass = {
 //
 //                        }

@@ -1,6 +1,7 @@
 package com.jyldyzferr.travelapp.di
 
 import com.jyldyzferr.travelapp.domain.repositories.BookingRepository
+import com.jyldyzferr.travelapp.domain.repositories.CurrentBookingRepository
 import com.jyldyzferr.travelapp.domain.repositories.CurrentUserRepository
 import com.jyldyzferr.travelapp.domain.repositories.LoginRepository
 import com.jyldyzferr.travelapp.domain.repositories.TourRepository
@@ -150,14 +151,17 @@ class UseCaseModule {
 
     @Provides
     fun provideBookingFlightUseCase(
-        repository: BookingRepository
+        repository: BookingRepository,
+        currentBookingRepository: CurrentBookingRepository
     ): BookingFlightUseCase = BookingFlightUseCaseImpl(
-        repository = repository
+        repository = repository,
+        currentBookingRepository = currentBookingRepository
+
     )
 
     @Provides
     fun provideCurrentBookingUseCase(
-        repository: BookingRepository
+        repository: CurrentBookingRepository
     ): CurrentBookingUseCase = CurrentBookingUseCaseImpl(
         repository = repository
     )

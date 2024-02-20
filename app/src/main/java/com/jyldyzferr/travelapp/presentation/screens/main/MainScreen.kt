@@ -111,11 +111,11 @@ fun HomeScreenSecond(
         Spacer(modifier = Modifier.height(5.dp))
         Text(
             modifier = Modifier
-                .padding(start = 18.dp),
+                .padding(start = 24.dp),
             text = "All Tours",
             fontFamily = GILROY,
             color = MaterialTheme.colorScheme.onBackground,
-            style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.ExtraBold),
+            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.ExtraBold),
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(24.dp),

@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -31,6 +32,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -60,26 +62,29 @@ const val SELECT_FLIGHT_ROUTE = "select_flight_route"
 
 @Composable
 fun SelectYourFlightScreen(
-    uiState: BoardingPassUiState,
+//    uiState: BoardingPassUiState,
     navigateToBoardingPass: () -> Unit,
 ) {
-    when (uiState) {
-        is BoardingPassUiState.Initial -> Unit
-        is BoardingPassUiState.Loading -> LoadingScreen()
-        is BoardingPassUiState.Error -> ErrorScreen(
-            message = uiState.message,
-            onClick = { }
-        )
-
-        is BoardingPassUiState.Content -> SelectYourFlightScreenOne(
-            uiState = uiState,
-            navigateToBoardingPass = navigateToBoardingPass
-        )
-    }
+    SelectYourFlightScreenOne(
+        navigateToBoardingPass = navigateToBoardingPass
+    )
+//    when (uiState) {
+//        is BoardingPassUiState.Initial -> Unit
+//        is BoardingPassUiState.Loading -> LoadingScreen()
+//        is BoardingPassUiState.Error -> ErrorScreen(
+//            message = uiState.message,
+//            onClick = { }
+//        )
+//        is BoardingPassUiState.Content -> SelectYourFlightScreenOne(
+//            uiState = uiState,
+//            navigateToBoardingPass = navigateToBoardingPass
+//        )
+//    }
 }
+
 @Composable
 fun SelectYourFlightScreenOne(
-    uiState: BoardingPassUiState.Content,
+//    uiState: BoardingPassUiState.Content,
     navigateToBoardingPass: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -143,7 +148,7 @@ fun SelectYourFlightScreenOne(
                             )
                             Spacer(modifier = modifier.width(4.dp))
                             Text(
-                                text = uiState.booking.departure,
+                                text = "Feb 22, 2024",
                                 fontSize = 19.sp
                             )
                         }
@@ -166,7 +171,7 @@ fun SelectYourFlightScreenOne(
                             )
                             Spacer(modifier = modifier.width(4.dp))
                             Text(
-                                text = uiState.booking.passport,
+                                text = "AN233535",
                                 fontSize = 19.sp
                             )
                         }

@@ -62,10 +62,11 @@ const val FLIGHT_BOOKING_ROUTE = "flight_booking_route"
 fun FlightBookingScreen(
     uiState: BookingUiState,
     onEvent: (BookingEvent) -> Unit,
-    addToBasket: (Booking) -> Unit,
-//    navigateToSelectFlight: () -> Unit,
+//    addToBasket: (Booking) -> Unit,
+    navigateToSelectFlight: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+
     var isShowInfoBlock by remember { mutableStateOf(false) }
 
     rememberCoroutineScope().launch() {
@@ -117,7 +118,7 @@ fun FlightBookingScreen(
                             .fillMaxWidth(1f),
                         isPassword = false,
                         label = "Location",
-                        value = uiState.addToBasket.location,
+                        value = uiState.location,
                         onValueChange = {
                             onEvent(BookingEvent.OnLocationChanged(it))
                         }
@@ -128,7 +129,7 @@ fun FlightBookingScreen(
                             .fillMaxWidth(1f),
                         isPassword = false,
                         label = "Destination",
-                        value = uiState.addToBasket.destination,
+                        value = uiState.destination,
                         onValueChange = {
                             onEvent(BookingEvent.OnDestinationChanged(it))
                         }
@@ -139,7 +140,7 @@ fun FlightBookingScreen(
                             .fillMaxWidth(1f),
                         isPassword = false,
                         label = "Passport",
-                        value = uiState.addToBasket.passport,
+                        value = uiState.passport,
                         onValueChange = {
                             onEvent(BookingEvent.OnPassportChanged(it))
                         }
@@ -156,7 +157,7 @@ fun FlightBookingScreen(
                                 .height(64.dp),
                             isPassword = false,
                             label = "Departure",
-                            value = uiState.addToBasket.departure,
+                            value = uiState.departure,
                             onValueChange = {
                                 onEvent(BookingEvent.OnDepartureChanged(it))
                             }
@@ -168,7 +169,7 @@ fun FlightBookingScreen(
                                 .height(64.dp),
                             isPassword = false,
                             label = "Return",
-                            value = uiState.addToBasket.returnDate,
+                            value = uiState.returnDate,
                             onValueChange = {
                                 onEvent(BookingEvent.OnReturnDateChanged(it))
                             }
@@ -177,7 +178,8 @@ fun FlightBookingScreen(
                     Spacer(modifier = modifier.height(20.dp))
                     Button(
                         onClick = {
-                            onEvent(BookingEvent.OnFlightSearchClick)
+                            navigateToSelectFlight()
+//                            onEvent(BookingEvent.OnFlightSearchClick)
                         },
                         modifier = Modifier
                             .fillMaxWidth(1f)

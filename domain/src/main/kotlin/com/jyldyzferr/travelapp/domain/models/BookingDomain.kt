@@ -5,10 +5,10 @@ data class BookingDomain(
     val destination: String,
     val location: String,
 //    val money: String,
-    val objectId: String,
+    val objectId: String?,
     val passport: String,
     val returnDate: String,
-    val updatedAt: String
+    val updatedAt: String?
 ) {
     companion object {
         val unknown = BookingDomain(
